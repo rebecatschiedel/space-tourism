@@ -136,16 +136,24 @@ select {
     padding-inline: 2em;
     margin-inline: auto;
     max-width: 80rem;
+    padding-inline: 1rem;
 }
 
 .grid-container {
+    text-align: center;
     display: grid;
+    place-items: center;
 }
 
-@media (min-width: 45rem) {
+.grid-container * {
+    max-width: 50ch
+}
+
+@media (min-width: 45em) {
     .grid-container {
+        text-align: left;
         column-gap: var(--container-gap, 2rem);
-        grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(2rem, 1fr);
+        grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(1rem, 1fr);
     }
     
     .grid-container > *:first-child {
@@ -155,7 +163,13 @@ select {
     .grid-container > *:last-child {
         grid-column: 3;
     }
+
+    .grid-container--home {
+        padding-bottom: max(6rem, 20vh);
+        align-items: end;
+    }
 }
+
 
 /* screen reader only */
 .sr-only {
@@ -227,6 +241,7 @@ select {
 /* ---------- */
 
 .large-button {
+    font-size: 2rem;
     position: relative;
     z-index:1;
     display: inline-grid; /* overwrite the inline block from the a tag*/
@@ -340,4 +355,30 @@ select {
 .number-list > [aria-selected="true"] {
     background-color: hsl( var(--clr-white)); 
     color: hsl( var(--clr-dark) ); 
+}
+
+
+/* ----------------------------- */
+/* Page specific background      */
+/* ----------------------------- */
+body {
+    background-size: cover;
+    background-position: bottom center;
+}
+/* home */
+.home {
+    background-image: url(./assets/home/background-home-mobile.jpg);
+}
+
+@media (min-width: 35rem) {
+    .home {
+        background-position: center center;
+        background-image: url(./assets/home/background-home-tablet.jpg);
+    }
+}
+
+@media (min-width: 45rem) {
+    .home {
+        background-image: url(./assets/home/background-home-desktop.jpg);
+    }
 }
