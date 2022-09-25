@@ -290,6 +290,10 @@ select {
     }
 }
 
+.primary-navigation[data-visible="true"] {
+    transform: translateX(0);
+}
+
 .mobile-nav-toggle {
     display: none;
 }
@@ -304,7 +308,8 @@ select {
         padding: min(20rem, 15vh) 2rem;
         margin: 0;
         flex-direction: column;
-        transform: translateX(100%)
+        transform: translateX(100%);
+        transition: transform 500ms ease-in-out;
     }
 
     .mobile-nav-toggle {
@@ -317,8 +322,13 @@ select {
         border: 0;
         background-image: url(./assets/shared/icon-hamburger.svg);
         background-repeat: no-repeat;
+        background-position: center;
         width: 1.5rem;
         aspect-ratio: 1;
+    }
+
+    .mobile-nav-toggle[aria-expanded="true"] {
+        background-image: url(./assets/shared/icon-close.svg);
     }
 
     .primary-navigation.underline-indicators > * {
