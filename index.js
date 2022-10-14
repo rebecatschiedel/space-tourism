@@ -72,8 +72,7 @@ const changeDestination = function (destination, e) {
   // Add underline to the clicked button
   list.childNodes.forEach((child) => {
     // HOW TO TOOGLE AREA SELECTED?
-
-    console.log(child);
+    // console.log(child);
   });
 
   // Fetch the data
@@ -85,8 +84,9 @@ const changeDestination = function (destination, e) {
   image.alt = "The " + destination;
   image.src = destinationData.images.png;
   //Image source NOT WORKING ----------<
-  // console.log(destinationData.images.png);
-  // console.log(image.src);
+  // change source in picture!
+  console.log(destinationData.images.png);
+  console.log(image.src);
 
   // Update title
   info.firstElementChild.textContent = destination;
