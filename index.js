@@ -15,9 +15,10 @@ navToggle.addEventListener("click", function (e) {
 });
 
 // Destination Page
-const list = document.querySelector("#destination-list");
+const planetsList = document.querySelectorAll("#planets");
 const info = document.querySelector(".destination-info");
 const image = document.querySelector("#image");
+const srcImage = document.querySelector("#srcImg");
 
 const data = [
   {
@@ -66,27 +67,16 @@ const data = [
   },
 ];
 
-//--------// HOW TO READ JASON FILE
-
 const changeDestination = function (destination, e) {
-  // Add underline to the clicked button
-  list.childNodes.forEach((child) => {
-    // HOW TO TOOGLE AREA SELECTED?
-    // console.log(child);
-  });
-
   // Fetch the data
   const destinationData = data.find(
     (destinationObj) => destinationObj.name === destination
   );
 
   //Update image
+  image.setAttribute("src", destinationData.images.png);
+  srcImage.setAttribute("srcset", destinationData.images.webp);
   image.alt = "The " + destination;
-  image.src = destinationData.images.png;
-  //Image source NOT WORKING ----------<
-  // change source in picture!
-  console.log(destinationData.images.png);
-  console.log(image.src);
 
   // Update title
   info.firstElementChild.textContent = destination;
@@ -101,8 +91,20 @@ const changeDestination = function (destination, e) {
   meta.querySelector("#travel").textContent = destinationData.travel;
 };
 
-list.childNodes.forEach((child) => {
-  child.addEventListener("click", (e) =>
-    changeDestination(child.textContent, e)
-  );
+planetsList.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    toggleAriaSelected(e);
+    changeDestination(item.textContent, e);
+  });
 });
+
+const toggleAriaSelected = (e) => {
+  //get each element inside the list
+  planetsList.forEach((planet) => {
+    //set aria selected to false
+    planet.setAttribute("aria-selected", false);
+  });
+
+  //set aria selected to true to the new selected
+  e.target.setAttribute("aria-selected", true);
+};
